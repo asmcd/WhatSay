@@ -1,0 +1,227 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+        <title>Registration Form</title>
+      
+    
+  <script type="text/javascript" charset="utf-8" src="cordova-2.9.0.js"></script>
+  <style>
+p {
+    color: red;
+    text-align: center;
+} 
+</style>
+ </head>
+ <body>
+    <body>
+        <br>
+        <br>
+        
+        <script>
+            function validate()
+            {
+			if( document.myform.username.value == "")
+                {
+                    alert("Please provide username");
+                    document.myform.username.focus();
+                    return false;
+                }
+		//email check
+		//email present check
+		atpos=document.myform.emailid.value.lastIndexOf("@");
+                dotpos=document.myform.emailid.value.lastIndexOf(".");
+                len=document.myform.emailid.value.length;
+                //window.alert(len);
+		if( document.myform.emailid.value == "" || atpos<1 || (dotpos-atpos)<2|| (len-dotpos)<3)
+                {
+			if(document.myform.emailid.value == "" )
+			{
+				alert("Please enter email");
+			}
+			else
+			{
+                        	alert("Invalid email");
+			}
+                        document.myform.emailid.focus();
+                        return false;
+                }
+			 
+				
+		
+                //password confirmed then password okay or not check
+                if(document.myform.pwd1.value!= "" && document.myform.pwd1.value == document.myform.pwd2.value)
+                {
+                    if(document.myform.pwd1.value.length<8)
+                    {
+                        alert("Password length must be atleast 8 characters");
+                        document.myform.pwd1.focus();
+                        return false;
+                    }
+                    re=/[0-9]/;
+                    if(!re.test(document.myform.pwd1.value))
+                    {
+                        alert("Password must have atleast one numeric value 0-9");
+                        document.myform.pwd1.focus();
+                        return false;
+                    }
+                    re=/[a-z]/;
+                    if(!re.test(document.myform.pwd1.value))
+                    {
+                        alert("Password must have atleast one lowercase char a-z");
+                        document.myform.pwd1.focus();
+                        return false;
+                    }
+                    
+                }
+		//password not confirmed
+                if(document.myform.pwd1.value== "" || document.myform.pwd1.value != document.myform.pwd2.value)
+                {
+                    if(document.myform.pwd1.value== "")
+                    {
+			alert("Enter password");                        
+                        document.myform.pwd1.focus();
+                        return false;
+                    }
+                    if(document.myform.pwd1.value.length<8)
+                    {
+                        alert("Password length must be atleast 8 characters");
+                        document.myform.pwd1.focus();
+                        return false;
+                    }
+                    re=/[0-9]/;
+                    if(!re.test(document.myform.pwd1.value))
+                    {
+                        alert("Password must have atleast one numeric value 0-9");
+                        document.myform.pwd1.focus();
+                        return false;
+                    }
+                    re=/[a-z]/;
+                    if(!re.test(document.myform.pwd1.value))
+                    {
+                        alert("Password must have atleast one lowercase char a-z");
+                        document.myform.pwd1.focus();
+                        return false;
+                    }
+                    //above establishes password 1 is fine
+                    //now checking password2
+                    
+                    if(document.myform.pwd2.value== "")
+                    {
+			alert("Enter confirmation password");
+                        document.myform.pwd2.focus();
+                        return false;
+                    }
+
+                    if(document.myform.pwd2.value.length<8)
+                    {
+                        alert("Password length must be atleast 8 characters");
+                        document.myform.pwd2.focus();
+                        return false;
+                    }
+                    re=/[0-9]/;
+                    if(!re.test(document.myform.pwd2.value))
+                    {
+                        alert("Password must have atleast one numeric value 0-9");
+                        document.myform.pwd2.focus();
+                        return false;
+                    }
+                    
+                    re=/[a-z]/;                    
+                    if(!re.test(document.myform.pwd2.value))
+                    {
+                        alert("Password must have atleast one lowercase char a-z");
+                        document.myform.pwd2.focus();
+                        return false;
+                    }
+                    
+                    else
+                    {
+					
+			alert("Error: Passwords do not match!");
+                        document.myform.pwd2.focus();
+                        return false;
+                    }
+                }
+				
+		//gender check
+		if(document.myform.gender[0].checked == false && document.myform.gender[1].checked == false)
+		{
+                    alert("Please enter gender");
+                    document.myform.gender[0].focus();
+                    return false;
+		}
+				
+		//address check
+                if( document.myform.add.value == "")
+                {
+                    alert("Please provide address");
+                    document.myform.add.focus();
+                    return false;
+                }
+				
+		//hobby check
+		check=0;
+		//window.alert(check);
+		var hob = document.myform.elements['hobby'];	
+		if(hob[0].checked)
+                    {check=1;}
+		if(hob[1].checked)
+                    {check=1;}
+                if(hob[2].checked)
+                    {check=1;}
+		if(hob[3].checked)
+                    {check=1;}
+                
+		if(check==0)
+		{	alert("Provide Hobby");
+			document.myform.hobby[0].focus();
+			return false;
+		}
+				
+		else	
+			alert("Successful registration!");
+                        return true;
+		         
+            }
+            
+        </script>
+       
+        <form ng-app="myapp" name="myform" onsubmit="return validate();">
+            Username: <input type="text" name="username">
+            
+            
+            <br><br>
+            Email_id: <input type="email" name="emailid">
+            <br><br>
+            
+            
+            Password: <input type="password" name="pwd1"><br><br>
+            Confirm Password: <input type="password" name="pwd2"><br><br>
+            
+            
+            Gender: <br>
+            <input type="radio" name="gender" value="male">Male<br>
+            <input type="radio" name="gender" value="female">Female<br><br>
+            
+            
+            Address:<br> <textarea name="add" rows="6" cols="10"> </textarea>
+            <br><br>
+            
+                    
+            Hobbies: <br><br><input type="checkbox" name="hobby" value="Books">Reading<br>
+            <input type="checkbox" name="hobby" value="sing">Singing<br>
+            <input type="checkbox" name="hobby" value="garden">Gardening<br>
+            <input type="checkbox" name="hobby" value="dance">Dancing<br><br><br>
+            
+            
+            <!--<input type="submit" value="Register"  ng-disabled="myform.username.$dirty && myform.username.$invalid ||
+            myform.email.$dirty && myform.email.$invalid || myform.add.$dirty && myform.add.$invalid || 'return validate();'">
+            -->
+            <input type="submit" value="Register">
+        
+        
+        </form>
+       
+    </body>
+ 
+</html>
